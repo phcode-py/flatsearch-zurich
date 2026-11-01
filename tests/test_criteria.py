@@ -98,3 +98,14 @@ def test_facts_from_listing_and_merge():
         (2000, date(2026, 11, 1), True, None)
     m = merge(f, {"has_washingmachine": False, "free_requirement": {"a": True}}, {"free_requirement": {"b": False}})
     assert m["has_washingmachine"] is False and m["free_requirement"] == {"a": True, "b": False}
+
+
+def test_flatfox_pin_params_send_integer_prices():
+    from flatfind.sources.flatfox import _pin_params
+    q = crit.search_query(C(
+        {"variable": "price", "aggregation": "required", "type": "tolerance", "range": [1000.5, 3999.5]},
+        {"variable": "rooms", "aggregation": "required", "type": "min", "limit": 2.5},
+    ))
+    p = _pin_params(q)
+    assert (p["min_price"], p["max_price"], p["min_rooms"]) == (1000, 4000, 2.5)
+    assert type(p["min_price"]) is int and type(p["max_price"]) is int

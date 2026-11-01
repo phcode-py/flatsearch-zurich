@@ -8,6 +8,7 @@ are fetched in batches from the public-listing endpoint, only for unseen ids.
 from __future__ import annotations
 
 import logging
+import math
 from collections.abc import Iterator
 from typing import Any
 
@@ -47,10 +48,15 @@ def _pin_params(query: SearchQuery) -> dict[str, Any]:
     p: dict[str, Any] = {"offer_type": "RENT", "max_count": PIN_CAP}
     if cats := [CATEGORY_TO_FLATFOX[c] for c in query.categories if c in CATEGORY_TO_FLATFOX]:
         p["object_category"] = cats
-    for ours, theirs in [("min_rooms", "min_rooms"), ("max_rooms", "max_rooms"),
-                         ("min_price", "min_price"), ("max_price", "max_price")]:
-        if (v := getattr(query, ours)) is not None:
-            p[theirs] = v
+    for name in ("min_rooms", "max_rooms"):
+        if (v := getattr(query, name)) is not None:
+            p[name] = v
+    # The API rejects non-integer prices (e.g. 4000.0). Round outwards so the
+    # server-side filter never drops what the local check would accept.
+    if query.min_price is not None:
+        p["min_price"] = math.floor(query.min_price)
+    if query.max_price is not None:
+        p["max_price"] = math.ceil(query.max_price)
     return p
 
 
