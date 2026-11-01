@@ -21,6 +21,7 @@ from typing import Any
 
 import httpx
 
+from flatfind.http import USER_AGENT
 from flatfind.store import Store
 
 log = logging.getLogger(__name__)
@@ -37,8 +38,8 @@ WALK_M_PER_MIN = 80  # ~4.8 km/h
 DETOUR = 1.3  # street network vs straight line
 LIVELY = {"cafe", "bar", "pub", "cinema", "park"}
 POI_MAX_AGE_S = 7 * 24 * 3600
-# Open-data APIs: identify honestly (Overpass rejects browser-like agents with 406).
-HEADERS = {"User-Agent": "flatfind/0.1 (personal flat search)"}
+# Overpass rejects requests without a proper agent (406).
+HEADERS = {"User-Agent": USER_AGENT}
 
 
 class RateLimited(RuntimeError):

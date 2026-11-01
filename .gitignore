@@ -3,3 +3,6 @@ __pycache__/
 data/
 *.pyc
 private/
+# Secrets and personal data (application details, credentials) never get committed.
+.env
+.env.*
