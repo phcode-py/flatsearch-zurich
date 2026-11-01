@@ -1,0 +1,27 @@
+# Per-source and lookup settings. What makes a flat suitable (filters, weights)
+# lives in private/criteria.json; see criteria.example.json.
+
+[flatfox]
+enabled = true
+# Bounding box around the city of Zurich.
+west = 8.4480
+east = 8.6254
+south = 47.3202
+north = 47.4346
+
+[homegate]
+enabled = true
+# Location slug as used in homegate URLs, e.g. city-zurich, zip-8004.
+location = "city-zurich"
+# Upper bound on result pages (20 listings each) per run. Incremental runs
+# stop as soon as a page contains nothing new.
+max_pages = 15
+request_delay_s = 1.5
+
+[geo]
+# Public-transport travel times are queried for this weekday (0=Mon) and time.
+weekday = 1
+depart_at = "08:00"
+request_delay_s = 0.5
+# OpenStreetMap POIs are fetched for the flatfox box plus this margin (degrees).
+margin_deg = 0.02

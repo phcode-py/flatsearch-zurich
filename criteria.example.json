@@ -1,0 +1,41 @@
+{
+  "unknown_score": 0.5,
+  "criteria": [
+    {"variable": "category", "aggregation": "required", "one_of": ["apartment", "house"],
+     "comment": "excludes rooms in shared flats and parking spaces"},
+
+    {"variable": "price", "aggregation": "required", "type": "max", "limit": 4000,
+     "comment": "CHF/month gross; hard cap"},
+    {"variable": "price", "aggregation": "weighted", "weight": 5, "type": "max", "ideal": 2500, "limit": 4000,
+     "comment": "cheaper is better: full reward at <= 2500, none at >= 4000"},
+
+    {"variable": "rooms", "aggregation": "required", "type": "min", "limit": 2.5},
+    {"variable": "rooms", "aggregation": "weighted", "weight": 3, "type": "tolerance", "range": [2.5, 4.5],
+     "comment": "3.5 rooms is best"},
+
+    {"variable": "move_in_date", "aggregation": "weighted", "weight": 3, "type": "tolerance",
+     "range": ["2026-12-01", "2027-03-31"], "comment": "midpoint mid-February is best"},
+
+    {"variable": "temporary", "aggregation": "required", "value": false},
+
+    {"variable": "has_dishwasher", "aggregation": "weighted", "weight": 2, "value": true},
+    {"variable": "has_washingmachine", "aggregation": "weighted", "weight": 3, "value": true,
+     "comment": "own washing machine in the flat"},
+
+    {"variable": "max_travel_time_sbb", "aggregation": "weighted", "weight": 4, "type": "max",
+     "stations": ["Zürich, Central", "Zürich, Paradeplatz"], "ideal": 10, "limit": 25,
+     "comment": "minutes door to station by public transport incl. walking, weekday 08:00; averaged over stations"},
+
+    {"variable": "max_next_supermarket", "aggregation": "weighted", "weight": 2, "type": "max", "ideal": 3, "limit": 12,
+     "comment": "walking minutes to the nearest supermarket"},
+
+    {"variable": "free_requirement", "aggregation": "weighted", "weight": 3,
+     "items": ["parquet floor", "balcony or terrace", "bright, lots of daylight"],
+     "comment": "judged from the description (LLM step) via `flatfind set-fact`"},
+
+    {"variable": "is_dachgeschoss", "aggregation": "weighted", "weight": 1, "value": true},
+
+    {"variable": "n_lively", "aggregation": "weighted", "weight": 2, "type": "min", "ideal": 40, "limit": 5,
+     "walk_minutes": 10, "comment": "cafes, bars, pubs, cinemas and parks within 10 walking minutes"}
+  ]
+}

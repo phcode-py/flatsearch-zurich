@@ -1,0 +1,68 @@
+{
+ "pk": 10000001,
+ "slug": "musterweg-2-8000-zurich",
+ "url": "/de/wohnung/musterweg-2-8000-zurich/10000001/",
+ "short_url": "/10000001/",
+ "submit_url": "/de/listing/10000001/submit/",
+ "status": "act",
+ "created": "2026-10-22T09:09:12.000000+02:00",
+ "published": "2026-10-22T09:09:12.654489+02:00",
+ "offer_type": "RENT",
+ "object_category": "APARTMENT",
+ "object_type": "APARTMENT",
+ "price_display": 3580,
+ "price_display_type": "TOTAL",
+ "price_unit": "monthly",
+ "rent_net": 3400,
+ "rent_charges": 180,
+ "rent_gross": 3580,
+ "short_title": "4 rooms apartment",
+ "public_title": "Musterweg 2, 8000 Zürich - CHF 3’580 per month",
+ "description_title": "Testwohnung mit Balkon",
+ "description": "Beispieltext für Tests.\n\n4-Zimmerwohnung, Bezug per 01.12.2026.",
+ "surface_living": 89,
+ "number_of_rooms": "4.0",
+ "floor": 1,
+ "attributes": [
+  {
+   "name": "balconygarden"
+  },
+  {
+   "name": "dishwasher"
+  },
+  {
+   "name": "washingmachine"
+  }
+ ],
+ "is_furnished": false,
+ "is_temporary": false,
+ "street": "Musterweg 2",
+ "zipcode": 8000,
+ "city": "Zürich",
+ "public_address": "Musterweg 2, 8000 Zürich",
+ "latitude": 47.36,
+ "longitude": 8.53,
+ "year_built": null,
+ "moving_date_type": "dat",
+ "moving_date": "2026-12-01",
+ "images": [
+  {
+   "pk": 1,
+   "url": "/media/ff/test/a.jpg",
+   "ordering": 1
+  },
+  {
+   "pk": 2,
+   "url": "/media/ff/test/b.jpg",
+   "ordering": 2
+  }
+ ],
+ "agency": {
+  "name": "Muster Immobilien AG",
+  "street": null,
+  "zipcode": null,
+  "city": null,
+  "country": "CH"
+ },
+ "country": "CH"
+}
